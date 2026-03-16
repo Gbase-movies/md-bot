@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: md-bot
+    restart: unless-stopped
+    volumes:
+      - ./session-data:/app/session-data
+      - ./logs:/app/logs
+    environment:
+      - NODE_ENV=production
+      - TZ=Africa/Nairobi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
